@@ -1,0 +1,47 @@
+
+  html{
+    font-size: 20px;
+  }
+  body{
+    width: 100vw;
+    background: #eee;
+    display: flex;
+    justify-content: center;
+  }
+  img{
+    max-width: 100%;
+    height: auto;
+  }
+
+  .wrap{
+    width: 100%;
+    min-width: 640px;
+    max-width: 760px;
+    min-height: 150px;
+
+    margin-top: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
+
+    box-sizing: border-box;
+    padding-top: 30px;
+    padding-left: 50px;
+    padding-right: 50px;
+
+    background: #fff;
+
+  }
+
+  .section{
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-top: 1px solid gray;
+  }
+
+  .header{
+    display: flex;
+  }
+  .header__logo{
+    width: 400px;
+    position: relative;
+  }
