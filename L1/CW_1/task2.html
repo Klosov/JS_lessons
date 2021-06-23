@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
  <head>
-   <meta charset="utf-8" />
+   <meta charset="utf-8">
    <title>JS-ADV. Lesson 1. Task 2 </title>
 </head>
 <body>
@@ -37,29 +37,21 @@
         5. Выбрать все элементы по классу 'test'
     */
 
+    const testID = document.getElementById('test');
+    console.log(testID)
 
+    const btns = document.querySelectorAll('button');
+    console.log(btns)
 
+    const createArea = document.getElementById('createArea');
+    const wrap = createArea.closest('.wrap');
+    console.log(wrap)
 
+    const li = document.querySelectorAll('li');
+    console.log(li)
 
-
-
-
-    
-    // var div = document.getElementById('test');
-    // console.log(div);
-
-    // var buttons = document.querySelectorAll('button');
-    // console.log(buttons);
-
-    // var createArea = document.getElementById('createArea');
-    // var wrap = createArea.closest('.wrap');
-    // console.log(wrap);
-
-    // var li = document.querySelectorAll('li');
-    // console.log(li);
-
-    // var test = document.querySelectorAll('.test');
-    // console.log(test);
+    const testClass = document.getElementsByClassName('test');
+    console.log(testClass)
 
   </script>
 </body>
