@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>ITEA - LESSON 2 / Homework </title>
+  <link rel="stylesheet" href="../public/css/normalize.css" />
+
+  <style>
+      body{
+        font-family: sans-serif;
+      }
+      .buttonsHeader{
+        width: 100%;
+        box-sizing: border-box;
+        padding: 10px 30px;
+        display: flex;
+        background: #eee;
+      }
+
+      .buttonsHeader .showButton{
+        border: none;
+        margin-right: 5px;
+        padding: 5px 20px;
+      }
+      .buttonsHeader .showButton:hover{
+        background: #ffcc00;
+      }
+      .tabContainer{
+        width: 600px;
+        box-sizing: border-box;
+        padding: 10px 20px;
+        margin-top: 10px;
+        display: flex;
+      }
+      .tabContainer .tab{
+        background: #eee;
+        box-sizing: border-box;
+        padding: 0px;
+        margin-bottom: 10px;
+        visibility: hidden;
+        overflow: hidden;
+        transition: 0.3s;
+        opacity: 0;
+      }
+      .tabContainer .tab.active{
+        visibility: visible;
+        overflow: visible;
+        opacity: 1;
+        padding: 10px 20px;
+      }
+  </style>
+</head>
+<body>
+
+  <header id="buttonContainer" class="buttonsHeader">
+    <button type="button" class="showButton" data-tab="1"> Вкладка 1 </button>
+    <button type="button" class="showButton" data-tab="2"> Вкладка 2 </button>
+    <button type="button" class="showButton" data-tab="3"> Вкладка 3 </button>
+  </header>
+
+  <div id="tabContainer" class="tabContainer">
+    <div class="tab" data-tab="1">
+      <h2>Вкладка 1</h2>
+      <img src="img/cat2.jpg"/>
+    </div>
+    <div class="tab" data-tab="2">
+      <h2>Вкладка 2</h2>
+      <img src="img/cat4.jpg"/>
+    </div>
+    <div class="tab" data-tab="3">
+      <h2>Вкладка 3</h2>
+      <img src="img/cat7.jpg"/>
+    </div>
+  </div>
+
+  <script src="1.js"></script>
+</body>
+</html>
