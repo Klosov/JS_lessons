@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <meta charset="utf-8" />
+   <title>JS-ADV. Lesson 1. Task 1 </title>
+</head>
+<body>
+    <button onclick="ChangeColor()" data-color="red" data-width="500px">RED</button>
+    <button onclick="ChangeColor()" data-color="blue">BLUE</button>
+    <button onclick="ChangeColor()" data-color="green">GREEN</button>
+
+    <script>
+      /*
+        Задание:
+          Получить data-атрибут с цветом с кнопки и задать фону странички такой цвет
+      */
+      function ChangeColor( event ){
+          //console.dir( event.target );
+        /*
+          Для того что бы получить кнопку на которую вы нажали используйте
+          свойство event.target в котором хранится ссылка на кнопку.
+          Пример уже написан выше.
+        */
+
+        // Ваш код должен быть тут!
+          document.body.style.background = event.target.dataset.color;
+      }
+
+
+    </script>
+</body>
+</html>
