@@ -79,40 +79,40 @@
     const containers = document.querySelectorAll('.roadMap__container');
 
     containers.forEach(function (container) {
-      const ball = container.querySelector('.ball');
-      const navBtns = container.querySelectorAll('.navButton');
-      const roadMapPoints = container.querySelectorAll('.roadMap .roadMapPoint');
-      let ballPosition = +ball.dataset.id;
+        const ball = container.querySelector('.ball');
+        const navBtns = container.querySelectorAll('.navButton');
+        const roadMapPoints = container.querySelectorAll('.roadMap .roadMapPoint');
+        let ballPosition = +ball.dataset.id;
 
-        navBtns.forEach( bnt => {
-          bnt.onclick = function (e) {
-            let direction = e.target.dataset.direction;
-            const maxPoints = roadMapPoints.length;
+        navBtns.forEach(bnt => {
+            bnt.onclick = function (e) {
+                const direction = e.target.dataset.direction;
+                const maxPoints = roadMapPoints.length;
 
-            roadMapPoints.forEach( point => {
-              point.classList.remove('ball');
-            })
+                roadMapPoints.forEach(point => {
+                    point.classList.remove('ball');
+                })
 
-            if (direction === '<') {
-              if (ballPosition !== 1) {
-                ballPosition--;
-              }
+                if (direction === '<') {
+                    if (ballPosition !== 1) {
+                        ballPosition--;
+                    }
 
-              let roadMapPoint = container.querySelectorAll('[data-id="'+ballPosition+'"]');
-              roadMapPoint.forEach( p => {
-                p.classList.add('ball')
-              })
-            } else {
-              if (ballPosition !== maxPoints) {
-                ballPosition++;
-              }
+                    let roadMapPoint = container.querySelectorAll('[data-id="' + ballPosition + '"]');
+                    roadMapPoint.forEach(p => {
+                        p.classList.add('ball')
+                    })
+                } else {
+                    if (ballPosition !== maxPoints) {
+                        ballPosition++;
+                    }
 
-              let roadMapPoint = container.querySelectorAll('[data-id="'+ballPosition+'"]');
-              roadMapPoint.forEach( p => {
-                p.classList.add('ball')
-              })
+                    let roadMapPoint = container.querySelectorAll('[data-id="' + ballPosition + '"]');
+                    roadMapPoint.forEach(p => {
+                        p.classList.add('ball')
+                    })
+                }
             }
-          }
         })
     })
 </script>
