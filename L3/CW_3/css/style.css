@@ -1,0 +1,126 @@
+body{
+  box-sizing: border-box;
+  padding: 10px 20px 30px;
+  background: #eee;
+  font-family: sans-serif;
+}
+
+.wrap{
+  margin: 10px 20px;
+  background: #fff;
+  padding: 10px 20px 30px;
+}
+.buttonAnimated{
+    width: 100px;
+    height: 30px;
+    background: white;
+    transition: 1s;
+    outline: none;
+    border-radius: 0px;
+}
+.buttonAnimated.animation{
+  width: 350px;
+  height: 50px;
+  background: red;
+  border-radius: 5px;
+}
+.eventButton{
+
+}
+.eventButton.unactive{
+  background: #eee;
+  color: #a8a8a8;
+}
+
+#error{
+  color: red;
+}
+
+#bubbleParent{
+  margin-top: 20px;
+  padding: 20px 30px;
+  border: 1px solid blue;
+}
+#bubbleParent:hover{
+  background: blue;
+}
+#bubbleChild{
+  padding: 20px 30px;
+  border: 1px solid red;
+}
+#bubbleChild:hover{
+  background: red;
+}
+
+.loadedImage{
+  transform: rotate(90deg);
+  transition: 0.5s;
+}
+
+.roadMap__container{
+  display: flex;
+  margin-bottom: 30px;
+}
+.roadMap{
+  width: 100%;
+  height: 30px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  box-sizing: border-box;
+  padding: 0 3%;
+}
+.roadMap::after{
+  content: '';
+  display: block;
+  position: absolute;
+  z-index: 3;
+  width: 90%;
+  height: 10px;
+  border-radius: 5px;
+  margin: 0 6%;
+
+  background: #d7d7d7;
+  top: 10px;
+  left: 0px;
+}
+.roadMapPoint{
+  width: 20px;
+  height: 20px;
+  background: #d7d7d7;
+  border:2px solid #585858;
+  border-radius: 50%;
+  position: relative;
+  z-index: 4;
+
+  transition: 0.3s;
+}
+.roadMap__container.yellow .ball{
+  background: #ffcc00;
+  border-color: red;
+}
+.roadMap__container.red .ball{
+  background: #ff4500;
+  border-color: #882c2c;
+}
+.roadMap__container.blue .ball{
+  background: #00c9ff;
+  border-color: #0b50ab;
+}
+
+
+.roadMapPoint.ball{
+  width: 40px;
+  height: 40px;
+}
+.navButton{
+  padding: 5px 10px;
+  background: #ffcc00;
+  border: none;
+}
+.navButton:hover{
+  cursor: poiner;
+  background: red;
+}
