@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Taks 1</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="wrap" id="wrap">
+    <h1>Добавление списка элементов по условию</h1>
+
+    <header>
+        <input type="text" placeholder="" id="Receiver">
+        <input type="submit" value="Add" id="AddToList">
+    </header>
+
+    <div>
+        <div id="error">
+
+        </div>
+        <ul id="list">
+
+        </ul>
+    </div>
+
+</div>
+<script>
+/*
+  Задание:
+
+    Написать скрипт, который будет добавлять введеный в инпут Receiver текст
+    в список list.
+    Если в списке больше 5 записей, убирать Event с кнопки AddToList.
+    Кнопке AddToList добавить disabled = true
+
+    После каждого ввода очищать значение инпута
+
+    Используемые методы:
+
+    addEventListener
+    removeEventListener
+
+    document.getElementById
+    document.createElement
+
+    element.innerText
+    element.setAttribute
+    element.appendChild
+
+    Получить значение инпута: Receiver.value [Receiver - это id]
+*/
+
+const AddToList = document.getElementById('AddToList'),
+    Receiver = document.getElementById('Receiver'),
+    error = document.getElementById('error'),
+    list = document.getElementById('list');
+
+let ListCount = 0,
+    value = '';
+
+addToTheList = (e) => {
+    ++ListCount;
+    value = Receiver.value;
+    if (value.length === 0) return false;
+
+    if (ListCount === 5) {
+        AddToList.removeEventListener('click', addToTheList);
+        AddToList.setAttribute('disabled', 'true');
+        error.innerText = 'Only 5 items!';
+    }
+
+    const li = document.createElement('li');
+    li.innerHTML = value;
+    list.appendChild(li);
+
+    Receiver.value = '';
+}
+
+AddToList.addEventListener('click', addToTheList);
+</script>
+</body>
+
+
+</html>
