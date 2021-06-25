@@ -9,13 +9,7 @@
   <div class="wrap">
     <div class="testBlock hover">
       <button class="iButton" id="mouseHover">1. Hover!</button>
-      <ul id="hoverResult" class="resultBlock">
-        <li class="red">Hovered!</li>
-        <li class="blue">Hovered!</li>
-        <li class="orange">Hovered!</li>
-        <li class="orange">Hovered!</li>
-        <li class="purple">Hovered!</li>
-      </ul>
+      <ul id="hoverResult" class="resultBlock"></ul>
     </div>
 
     <div class="testBlock click">
@@ -46,7 +40,7 @@
 
       Задание:
       На каждую из конопок назначить действие которое будет выполнять следующее действие:
-      1.На ховер(onmouseenter) повесить обработчик который будет при каждом наведении
+      1.На ховер(onmouseenter) повесить обработчик который при каждом наведении
         на кнопку будет выводить в блок результатом елемент li с текстом "hovered!"
         у которого будет один из следующих класов:
         red blue green orange purple
@@ -75,9 +69,6 @@
         5 -> five
         11 -> one one
         115 -> one one five
-
-
-
     */
 
     var mouseHover = document.getElementById('mouseHover');
@@ -85,25 +76,80 @@
     var mouseLight = document.getElementById('mouseLight');
     var keyboardButton = document.getElementById('keyboardButton');
 
+    function getRandomInt(max) {
+      return Math.floor(Math.random() * max);
+    }
+
+    // Task #1
+    const colors = ['red', 'blue', 'green', 'orange', 'purple'];
     mouseHover.onmouseenter = function(){
       console.log('hover');
+      const hoverResult = document.getElementById('hoverResult');
+      const li = document.createElement('li');
+
+      const classNum = getRandomInt(colors.length);
+      li.innerText = 'hovered!';
+      li.classList.toggle(colors[classNum]);
+
+      hoverResult.appendChild(li);
     }
 
     var clickIndex = 0;
     var direction = true;
+    const firstArr = ['six', 'two', 'three', 'four', 'one', 'five'];
+    const secondArr = ['one', 'two', 'three', 'four', 'five', 'six'];
+
+    // Task #2
+    const clickResult = document.getElementById('clickResult');
 
     mouseClick.onclick = function(){
-        console.log('click');
+      if (direction) {
+        clickResult.classList.remove(firstArr[clickIndex]);
+        clickIndex++;
+      } else {
+        clickResult.classList.add(secondArr[clickIndex]);
+        clickIndex++;
+      }
+
+      if (clickIndex === firstArr.length) {
+        clickIndex = 0;
+        direction = !direction;
+      }
     }
 
+    // Task #3
+    let clickColorIndex = 0;
+    const lightResult = document.getElementById('lightResult');
+    const textTrafficLight = ['Off', 'Red', 'Yellow', 'Green', 'Off'];
+    const colorsTrafficLight = ['white', 'red', 'yellow', 'green', 'white'];
 
-    mouseLight.onclick = function(e){
-        console.log('light');
+    mouseLight.onclick = function(e) {
+      lightResult.innerText = textTrafficLight[clickColorIndex];
+      lightResult.style.backgroundColor = colorsTrafficLight[clickColorIndex];
+      clickColorIndex++;
+
+      if (clickColorIndex === textTrafficLight.length) clickColorIndex = 1;
     }
 
-    var counter = 0;
-    keyboardButton.onkeydown = function(){
-        console.log('keydown');
+    // Task #4
+    let counter = 0;
+    const keyboardResult = document.getElementById('keyboardResult');
+
+    const numberClasses = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+
+    keyboardButton.onkeydown = function() {
+      keyboardResult.innerText = counter;
+      let classes = 'resultBlock key-colors';
+
+      let numbers = counter.toString().split('');
+
+      numbers.forEach((num) => {
+        classes = classes + ' ' + numberClasses[num];
+      });
+
+      keyboardResult.className = classes;
+
+      counter++;
     }
   </script>
 </body>

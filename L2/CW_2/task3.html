@@ -26,13 +26,34 @@
 
   <script>
     /*
-
       Задача: Сделать корректно работающее всплывающее окно.
       Условие: Узменять HTML разметку выше - нельзя.
       При нажании на одну из кнопок, должно открытся окно с соответствующим data- аттрибутом.
       При нажатии на кнопку close окно дожно закрываться.
-
     */
+
+    const buttons = document.querySelectorAll('#target > .popup__button'),
+          popupItems = document.querySelectorAll('#popup__container > .popup__item'),
+          popupDiv = document.getElementById('popup'),
+          popupClose = document.getElementById('popup__close');
+
+    popupClose.onclick = () => {
+      popupDiv.classList.remove('show');
+    }
+
+    buttons.forEach( btn => {
+      btn.onclick = () => {
+
+        popupItems.forEach(popup => {
+          popup.classList.remove('show');
+
+          if (btn.dataset.popup === popup.dataset.popup) {
+            popup.classList.toggle('show');
+            popupDiv.classList.add('show');
+          }
+        })
+      }
+    })
   </script>
 </body>
 </html>
