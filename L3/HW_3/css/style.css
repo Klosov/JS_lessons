@@ -54,3 +54,15 @@ body{
   transform: rotate(390deg);
   transition: 0.5s;
 }
+#slider {
+  min-height: 500px;
+}
+#slider img {
+  display: block;
+  opacity: 0;
+}
+
+#slider img.show {
+  opacity: 1;
+  transition: 1.5s;
+}
