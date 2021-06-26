@@ -16,7 +16,7 @@ body{
     background: white;
     transition: 1s;
     outline: none;
-    border-radius: 0px;
+    border-radius: 0;
 }
 .buttonAnimated.animation{
   width: 350px;
@@ -84,7 +84,7 @@ body{
 
   background: #d7d7d7;
   top: 10px;
-  left: 0px;
+  left: 0;
 }
 .roadMapPoint{
   width: 20px;
@@ -121,6 +121,22 @@ body{
   border: none;
 }
 .navButton:hover{
-  cursor: poiner;
+  cursor: pointer;
   background: red;
 }
+
+
+#result {
+  min-height: 400px;
+}
+#chooseYourBlock img,
+#result img {
+  display: block;
+  margin: 50px;
+  max-width: 400px;
+  height: auto;
+}
+#chooseYourBlock img {
+  max-width: 150px;
+}
+

@@ -49,30 +49,70 @@
         "https://c1.staticflickr.com/8/7218/7184786016_1ddab461e8_b.jpg",
         "http://www.atzmut.com/wp-content/uploads/2016/01/tree.jpg"
       ];
-
       */
 
-      var buttons = document.querySelectorAll('button');
-      var iconBlock = document.getElementById('chooseYourBlock');
-      var resultBlock = document.getElementById('result');
+      const buttons = document.querySelectorAll('button'),
+            iconBlock = document.getElementById('chooseYourBlock'),
+            resultBlock = document.getElementById('result');
+      let img = document.createElement('img'),
+          randomImage = document.createElement('img'),
+          randomBtn = document.createElement('button');
+          randomBtn.innerText = 'load random image';
 
-      console.log(buttons);
-
-      var iconsObj = {
+      const iconsObj = {
         house:  'https://image.flaticon.com/icons/svg/149/149064.svg',
         tree: 'https://image.flaticon.com/icons/svg/620/620705.svg',
         plane: 'https://image.flaticon.com/icons/svg/579/579268.svg'
       }
 
-      function showIcon(e){
-        var val = e.target.innerText.toLowerCase();
-        console.log(e);
+      const houseArray = [
+        "https://static.pexels.com/photos/106399/pexels-photo-106399.jpeg",
+        "https://i.pinimg.com/736x/7f/be/50/7fbe50ec634c65709d7fe6ac267c4e6f--large-garage-plans-house-plans-large-family.jpg",
+        "https://i.ytimg.com/vi/Xx6t0gmQ_Tw/maxresdefault.jpg"
+      ];
+      const planeArray = [
+        "http://www.x-plane.com/wp-content/uploads/2014/08/B777-200ER.png",
+        "https://media.cntraveler.com/photos/57067c1e9adc6caf5afe3f4c/master/pass/plane-landing-cr-getty-sb10062851ai-001.jpg",
+        "https://media.wired.com/photos/59323264a31264584499367f/master/w_1024,c_limit/diesel-plane-inline.jpg"
+      ];
+      const treeArray = [
+        "https://static.pexels.com/photos/56875/tree-dawn-nature-bucovina-56875.jpeg",
+        "https://c1.staticflickr.com/8/7218/7184786016_1ddab461e8_b.jpg",
+        "https://images.pexels.com/photos/36717/amazing-animal-beautiful-beautifull.jpg?cs=srgb&dl=pexels-pixabay-36717.jpg&fm=jpg"
+      ];
 
+      function getRandomInt(max) {
+        return Math.floor(Math.random() * max);
+      }
+
+      function showIcon(e) {
+        resultBlock.innerHTML = '';
+
+        let val = e.target.innerText.toLowerCase();
+
+        img.src = iconsObj[val];
+        img.alt = val;
+
+        randomBtn.setAttribute('data-type', val);
+
+        iconBlock.appendChild(img);
+        iconBlock.appendChild(randomBtn);
+      }
+
+      function showRandomImage(e) {
+        let type = e.target.dataset.type,
+            arrayName = eval(type + 'Array');
+
+        randomImage.src = arrayName[getRandomInt(arrayName.length)];
+
+        resultBlock.appendChild(randomImage);
       }
 
       buttons.forEach( (btn) => {
-        //alert('working')
+        btn.addEventListener('click', showIcon);
       })
+
+      randomBtn.addEventListener('click', showRandomImage);
     </script>
   </body>
 </html>
