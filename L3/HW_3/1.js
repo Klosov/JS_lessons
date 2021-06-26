@@ -39,7 +39,7 @@ RenderImage = function () {
 
   slider.appendChild(img);
 
-  setTimeout( () => {img.classList.add('show');}, 50);
+  setTimeout( () => {img.classList.add('show')}, 50);
 }
 
 prevSlide = () => {
