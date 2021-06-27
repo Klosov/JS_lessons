@@ -1,9 +1,7 @@
 function spinalCase(str) {
-  let regex = / |_/g;
-
   str = str.replace(/([a-z])([A-Z])/g, "$1 $2");
   
-  str = str.replace(regex, '-').toLowerCase();
+  str = str.replace(/ |_/g, '-').toLowerCase();
 
   return str;
 }
