@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Form work1</title>
+  <script>
+    /*
+      Задание:
+        Сделать шиблонизатор элемента по:
+        Ширине input type=range
+        Цвету  input type=color
+        Высоте input type=number
+        Скругление углов input type=number
+        Margin input type=number
+
+      Свойсвта: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Properties_Reference
+
+        + Сделать выборку цвета из рандомных 20 цветов которые выбираются из появившегося блока :
+        https://s3.envato.com/files/230412754/screenshots/1.png
+        За заготовку для рандома цвета использовать функцию из первых занятий.
+
+    */
+
+    window.addEventListener("load", function () {
+      var myWidth = document.getElementById('myWidth');
+
+      myWidth.addEventListener('input', function(event){
+        console.log( event.target.value );
+        result.style.width = event.target.value + 'px';
+      });
+    });
+
+  </script>
+
+  <style>
+    #test {
+      width: 400px;
+      height: 400px;
+      background: green;
+    }
+  </style>
+</head>
+<body>
+  <div class="Templating">
+    <form>
+      <input type="range" id="myWidth" min="10" max="500" step="10"/>
+      <input type="color" id="myColor" min="10" max="500" step="10"/>
+      <input type="range" id="" min="10" max="500" step="10"/>
+      <input type="range" id="" min="10" max="500" step="10"/>
+      <input type="range" id="" min="10" max="500" step="10"/>
+    </form>
+
+    <div class="TemplatingResult">
+      <div id="result" class="result"></div>
+    </div>
+  </div>
+
+
+  <div id="test">
+    <span>some test</span>
+  </div>
+
+  <style>
+    #colors{
+      width: 200px;
+
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .result{
+      width: 50px;
+      background: gray;
+      box-sizing: border-box;
+      padding: 10px;
+    }
+    #MyValidateForm{
+      width: 350px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #MyValidateForm input{
+      margin-bottom: 10px;
+      box-sizing: border-box;
+      padding: 10px 20px;
+    }
+    .circle{
+      width: 30px;
+      height: 30px;
+      background: #eee;
+      border-radius: 50%;
+    }
+  </style>
+</body>
+</html>

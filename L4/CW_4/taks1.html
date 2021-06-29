@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Forms Task 1</title>
+    <style>
+        #MyValidateForm {
+            width: 350px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #MyValidateForm input {
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            padding: 10px 20px;
+        }
+
+        .error {
+            border: 1px solid red;
+        }
+
+        .OK {
+            border: 1px solid green;
+        }
+    </style>
+</head>
+<body>
+<form id="MyValidateForm">
+    <input type="text" name='login' placeholder="Ваш логин"/>
+    <input type="password" name='pas1' placeholder="Ваш пароль"/>
+    <input type="password" name='pas2' placeholder="Повторите пароль"/>
+    <label for="agree">
+        <span>Вы согласны с лицензионым соглашением.</span>
+        <input type="checkbox" id="agree"/>
+    </label>
+    <input type="submit" id="submit" value="Отправить" disabled/>
+</form>
+
+<script>
+    const MyValidateForm = document.getElementById('MyValidateForm'),
+        login = document.querySelector('input[name="login"]'),
+        passMain = document.querySelector('input[name="pas1"]'),
+        passConfirm = document.querySelector('input[name="pas2"]'),
+        submit = document.getElementById('submit'),
+        agree = document.getElementById('agree'),
+        validBorder = '2px solid green',
+        notValidBorder = '2px solid red';
+
+    MyValidateForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        if (validateLogin(login.value) &&
+            validateMainPwd(passMain.value) &&
+            validateConfirmedPwd(passMain.value, passConfirm.value)) {
+            alert('Form send');
+        } else {
+            alert('Bad request');
+        }
+    })
+
+    agree.addEventListener('change', (e) => {
+        submit.disabled = !e.target.checked;
+    })
+
+    function validateLogin(loginVal) {
+        if (loginVal.length <= 4) {
+            login.style.border = notValidBorder;
+            return false;
+        } else {
+            login.style.border = validBorder;
+            return true;
+        }
+    }
+
+    function validateMainPwd(pwd) {
+      console.log(pwd)
+        if (pwd < 6) {
+            passMain.style.border = notValidBorder;
+            return false;
+        } else {
+            passMain.style.border = validBorder;
+            return true;
+        }
+    }
+
+    function validateConfirmedPwd(pwdMain, pwdConfirm) {
+        if (pwdMain !== pwdConfirm) {
+            passConfirm.style.border = notValidBorder;
+            return false;
+        } else {
+            passConfirm.style.border = validBorder;
+            return true;
+        }
+    }
+
+
+    /*
+      Задание:
+        Сделать валидацию формы:
+        1. Логин / Пароль не может быть пустым
+        2. Пароли должны совпадть
+        3. Пока не стоит что юзер согласен с лиц. соглашением - кнопка отправки не активна
+
+        + бонус - то поле, которое не прошло валидацию подсвечивать красным.
+                - которое прошло - подсвечивать зеленым.
+    */
+</script>
+</body>
+</html>
