@@ -1,5 +1,4 @@
 /*
-
     Задание 3:
 
     1. Создать ф-ю констурктор которая создаст новую собаку у которой есть имя и порода
@@ -22,3 +21,20 @@
       /* ... делать что-то с obj[key] ...
     // }
 */
+
+function Dog(name, breed) {
+    this.name = name;
+    this.breed = breed;
+    this.status = 'idle';
+    this.run = () => {
+        console.log(this.name + ' run!')
+    }
+    this.eat = () => {
+        console.log(this.name + ' eat!')
+    }
+    this.showAllProps = () => {
+        for (let key in this) {
+            console.log(key + ' value: ' + this[key]);
+        }
+    }
+}

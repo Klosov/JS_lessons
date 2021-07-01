@@ -1,5 +1,4 @@
 /*
-
     Задание 2.
 
     Напишите фунцию, которая изменяет цвет-фона и цвет текста, присваивая к новым цветам
@@ -14,15 +13,21 @@
 
     1.3 Ф-я принимает фразу для заголовка,
     обьект с настройками передаем через .apply();
-
 */
-  let colors = {
-    background: 'purple',
-    color: 'white'
-  }
+let colors = {
+    background: 'black',
+    color: 'yellow'
+}
 
-  // fucntion myCall( color ){
-  //   document.body.style.background = this.background;
-  //   document.body.style.color = color;
-  // }
-  // myCall.call( colors, 'red' );
+function myCall(str) {
+  const body = document.body;
+  const h1 = document.createElement('h1');
+        h1.innerHTML = str;
+
+  body.style.background = this.background;
+  body.style.color = this.color;
+
+  body.appendChild(h1);
+}
+
+myCall.apply( colors, ['Hello world'] );
