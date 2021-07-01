@@ -34,6 +34,7 @@ function Dog(name, breed) {
     }
     this.showAllProps = () => {
         for (let key in this) {
+            if (this.hasOwnProperty(key))
             console.log(key + ' value: ' + this[key]);
         }
     }
