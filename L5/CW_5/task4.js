@@ -30,24 +30,49 @@
       String.fromCharCode(189, 43, 190, 61) // ½+¾
 */
 
-function CaesarCipher(n, word) {
-    this.n = n;
-    this.word = word;
-    this.encryptCaesar = function() {
-        let arrChars = this.word.split('');
-        let startCharCode = 40;
+function encryptCaesar() { // shift, word
+    let arrChars = this.word.split('');
+    let arrCharsEncrypt = [];
 
-        arrChars.forEach((value) => {
+    arrChars.forEach((value) => {
+        arrCharsEncrypt.push(value.charCodeAt(0));
+    });
 
-            if (value.charCodeAt(0) === 200) {
-                startCharCode = 40
-            }
-            value.charCodeAt(0) + this.n;
-        })
-    }
-    this.decryptCaesar = function(...aruments) {
-        console.log(this.word)
-    }
+    let encryptedPhrase = arrCharsEncrypt.map((num) => {
+        return String.fromCharCode(num + this.shift);
+    });
+
+    return encryptedPhrase.join('');
 }
 
+function decryptCaesar() { // shift, word
+    let arrChars = this.word.split('');
+    let arrCharsDecrypt = [];
+
+    arrChars.forEach((value) => {
+        arrCharsDecrypt.push(value.charCodeAt(0));
+    });
+
+    let decryptedPhrase = arrCharsDecrypt.map((num) => {
+        return String.fromCharCode(num - this.shift);
+    });
+
+    return decryptedPhrase.join('');
+}
+
+let paramsEncrypt = {
+    shift: 3,
+    word: 'I know how binding works in JS'
+}
+
+let paramsDecrypt = {
+    shift: 3,
+    word: 'L#nqrz#krz#elqglqj#zrunv#lq#MV'
+}
+
+let newEncryptCaesar = encryptCaesar.bind(paramsEncrypt);
+newEncryptCaesar(); // L#nqrz#krz#elqglqj#zrunv#lq#MV
+
+let newDecryptCaesar = decryptCaesar.bind(paramsDecrypt);
+newDecryptCaesar(); // I know how binding works in JS
 
