@@ -30,4 +30,12 @@ function myCall(str) {
   body.appendChild(h1);
 }
 
+// 1.1
+//myCall.call(colors, 'red');
+
+// 1.2
+//let newMyCall = myCall.bind(colors);
+//newMyCall();
+
+// 1.3
 myCall.apply( colors, ['Hello world'] );
