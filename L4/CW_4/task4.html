@@ -1,9 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Form work1</title>
-  <script>
+    <meta charset="UTF-8">
+    <title>Form work1</title>
+</head>
+<body>
+<label for="countries">Countries: </label>
+<select id="countries" class="select"></select>
+
+
+<div id="result"></div>
+
+<script>
     /*
       Задание:
 
@@ -23,17 +31,104 @@
 
         + бонус добавить красивые картинки с погодой
     */
+    const selectCountries = document.getElementById('countries');
+
+    const countries = ['Ukraine', 'Poland', 'USA'],
+        ukraineCity = ['Kyiv', 'Lviv', 'Odesa', 'Charkiv'],
+        polandCity = ['Warszawa', 'Poznan', 'Krakow', 'Katowice'],
+        usaCity = ['New York', 'Los Angeles', 'Las Vegas', 'Chicago'];
+
+    let country = '',
+        city = '',
+        weather = '',
+        temperature = 0;
+
+    function getRandomIntInclusive(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function createCountrySelect() {
+        const startOpt = new Option( "Выберите страну", null, true, true);
+        startOpt.disabled = true;
+
+        countries.forEach( function(item, key){
+            let option;
+
+            option = new Option(item, item, true, true);
+
+            selectCountries.appendChild(option);
+        });
+
+        selectCountries.appendChild(startOpt);
+    }
+
+    function createCitySelect(arrCity) {
+        const selectCities = document.createElement('select');
+        const labelSelectCities = document.createElement('label');
+        labelSelectCities.innerText = 'Cities: ';
+
+        const startOpt = new Option( "Выберите город", null, true, true);
+        startOpt.disabled = true;
+
+        arrCity.forEach( function(item, key){
+            let option;
+
+            option = new Option(item, item, true, true);
+
+            selectCities.appendChild(option);
+        });
+
+        selectCities.addEventListener('change', getWeather);
+
+        selectCities.appendChild(startOpt);
+        document.body.appendChild(labelSelectCities);
+        document.body.appendChild(selectCities);
+    }
+
+    function getWeather(e) {
+        const div = document.createElement('div');
+        let describes = [];
+        let id = 0;
+
+        city = e.target.value;
+        temperature = getRandomIntInclusive(-10, 40);
+
+        if (temperature > -10 && temperature <= 0) {
+            describes = ['Солнечно', 'Легкий снегопад', 'Сильный снегопад'];
+            id = getRandomIntInclusive(0, 2);
+            weather = describes[id];
+        } else if (temperature > 0 && temperature <= 30) {
+            describes = ['Солнечно', 'Дождь', 'Ветер', 'Сильный дождь'];
+            id = getRandomIntInclusive(0, 3);
+            weather = describes[id];
+        } else {
+            describes = ['Солнечно', 'Засуха', 'Ветер'];
+            id = getRandomIntInclusive(0, 2);
+            weather = describes[id];
+        }
+
+        div.innerText = `${country}. В ${city} ${weather} ${temperature} градусов.`;
+
+        document.body.appendChild(div);
+    }
+
     window.addEventListener("load", function () {
-      var countries = ['Ukraine', 'Poland', 'USA'];
-      var ukraineCity = ['Kyiv', 'Lviv', 'Odesa', 'Charkiv'];
-      var polandCity = ['Warszawa', 'Poznan', 'Krakow', 'Katowice'];
-      var usaCity = ['New York', 'Los Angeles', 'Las Vegas', 'Chicago'];
+        createCountrySelect();
+
+        selectCountries.addEventListener('change', (e) => {
+            let arrCity;
+
+            switch (e.target.value) {
+                case 'Ukraine': arrCity = ukraineCity; break;
+                case 'Poland': arrCity = polandCity; break;
+                case 'USA': arrCity = usaCity; break;
+            }
+
+            createCitySelect(arrCity);
+        });
     });
-  </script>
-</head>
-<body>
-  <select id="countries"></select>
-  <div id="result"></div>
-  
+</script>
 </body>
 </html>
