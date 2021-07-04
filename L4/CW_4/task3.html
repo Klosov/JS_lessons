@@ -1,11 +1,52 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Form work1</title>
-  <script>
-    /*
-      Задание:
+    <meta charset="UTF-8">
+    <title>Form work1</title>
+
+    <style>
+        .listItem {
+            margin: 10px 0;
+        }
+        .done {
+            text-decoration: line-through;
+        }
+
+        .textInput {
+            box-sizing: border-box;
+            padding: 10px 20px;
+        }
+
+        .addButton {
+            box-sizing: border-box;
+            padding: 10px 20px;
+            background: #ffcc00;
+        }
+
+        .DoneCheckbox,
+        .TodoText {
+            margin-right: 5px;
+        }
+
+        button {
+            background: red;
+            color: #fff;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <input id="newToDo" class="textInput">
+    <input id="AddToDo" class="addButton" type="button" value="Add">
+</header>
+
+<ul id="toDoList">
+
+</ul>
+
+<script>
+    /*Задание:
         Создать список дел, в который можно:
         - Добавить новый элемент
         - Удалить элемент
@@ -16,52 +57,56 @@
             <input type="checkbox" class="DoneCheckbox" />
             <span class="TodoText">{add text}</span>
             <button>Remove</button>
-        </li>
+        </li>*/
 
-    */
+    const btnAdd = document.getElementById('AddToDo'),
+        toDoList = document.getElementById('toDoList'),
+        newToDo = document.getElementById('newToDo');
+
+    removeToDo = function (e) {
+        e.target.closest('li').remove()
+    }
+
+    doneToDo = function (e) {
+        if (e.target.checked) {
+            //e.target.closest('li').querySelector('.TodoText').style.textDecoration = 'line-through';
+            e.target.closest('li').classList.add('done');
+        } else {
+            e.target.closest('li').classList.remove('done');
+        }
+    }
+
+
     window.addEventListener("load", function () {
+        btnAdd.addEventListener('click', (e) => {
+            if (newToDo.value === '' || newToDo.value.length < 5) return;
 
+            const li = document.createElement('li'),
+                input = document.createElement('input'),
+                span = document.createElement('span'),
+                button = document.createElement('button');
+
+            li.className = 'listItem';
+
+            input.setAttribute('type', 'checkbox');
+            input.className = 'DoneCheckbox';
+            input.addEventListener('change', doneToDo);
+
+            span.className = 'TodoText';
+            span.innerText = newToDo.value;
+
+            newToDo.value = "";
+
+            button.innerText = 'Remove';
+            button.addEventListener('click', removeToDo);
+
+            li.appendChild(input);
+            li.appendChild(span);
+            li.appendChild(button);
+
+            toDoList.appendChild(li);
+        });
     });
-  </script>
-</head>
-<body>
-    <header>
-      <input id="newToDo" class="textInput"/>
-      <input id="AddToDo" class="addButton" type="button" value="Add"/>
-    </header>
-    <ul id="toDoList">
-
-        <li class="listItem">
-            <input type="checkbox" class="DoneCheckbox" />
-            <span class="TodoText">{add text}</span>
-            <button>Remove</button>
-        </li>
-    </ul>
-
-  <style>
-    .done{
-      text-decoration: line-through;
-    }
-    .textInput{
-      box-sizing: border-box;
-      padding: 10px 20px;
-    }
-    .addButton{
-      box-sizing: border-box;
-      padding: 10px 20px;
-      background: #ffcc00;
-    }
-
-    .DoneCheckbox,
-    .TodoText{
-      margin-right: 5px;
-    }
-
-    button{
-      background: red;
-      color: #fff;
-      padding: 5px 10px;
-    }
-  </style>
+</script>
 </body>
 </html>
