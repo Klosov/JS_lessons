@@ -1,66 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Form work1</title>
-  <script>
-    /*
-      Задание:
-        Сделать шиблонизатор элемента по:
-        Ширине input type=range
-        Цвету  input type=color
-        Высоте input type=number
-        Скругление углов input type=number
-        Margin input type=number
-
-      Свойсвта: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Properties_Reference
-
-        + Сделать выборку цвета из рандомных 20 цветов которые выбираются из появившегося блока :
-        https://s3.envato.com/files/230412754/screenshots/1.png
-        За заготовку для рандома цвета использовать функцию из первых занятий.
-
-    */
-
-    window.addEventListener("load", function () {
-      var myWidth = document.getElementById('myWidth');
-
-      myWidth.addEventListener('input', function(event){
-        console.log( event.target.value );
-        result.style.width = event.target.value + 'px';
-      });
-    });
-
-  </script>
-
   <style>
+    .templating {
+      width: 80vw;
+      margin: 50px auto;
+    }
     #test {
       width: 400px;
       height: 400px;
       background: green;
     }
-  </style>
-</head>
-<body>
-  <div class="Templating">
-    <form>
-      <input type="range" id="myWidth" min="10" max="500" step="10"/>
-      <input type="color" id="myColor" min="10" max="500" step="10"/>
-      <input type="range" id="" min="10" max="500" step="10"/>
-      <input type="range" id="" min="10" max="500" step="10"/>
-      <input type="range" id="" min="10" max="500" step="10"/>
-    </form>
-
-    <div class="TemplatingResult">
-      <div id="result" class="result"></div>
-    </div>
-  </div>
-
-
-  <div id="test">
-    <span>some test</span>
-  </div>
-
-  <style>
     #colors{
       width: 200px;
 
@@ -90,6 +42,241 @@
       background: #eee;
       border-radius: 50%;
     }
+    input[type=range] {
+      height: 34px;
+      -webkit-appearance: none;
+      margin: 10px 0;
+      width: 100%;
+    }
+    input[type=range]:focus {
+      outline: none;
+    }
+    input[type=range]::-webkit-slider-runnable-track {
+      width: 100%;
+      height: 12px;
+      cursor: pointer;
+      animate: 0.2s;
+      box-shadow: 1px 1px 1px #002200;
+      background: #205928;
+      border-radius: 1px;
+      border: 1px solid #18D501;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      box-shadow: 3px 3px 3px #00AA00;
+      border: 2px solid #83E584;
+      height: 23px;
+      width: 23px;
+      border-radius: 23px;
+      background: #439643;
+      cursor: pointer;
+      -webkit-appearance: none;
+      margin-top: -7px;
+    }
+    input[type=range]:focus::-webkit-slider-runnable-track {
+      background: #205928;
+    }
+    input[type=range]::-moz-range-track {
+      width: 100%;
+      height: 12px;
+      cursor: pointer;
+      animate: 0.2s;
+      box-shadow: 1px 1px 1px #002200;
+      background: #205928;
+      border-radius: 1px;
+      border: 1px solid #18D501;
+    }
+    input[type=range]::-moz-range-thumb {
+      box-shadow: 3px 3px 3px #00AA00;
+      border: 2px solid #83E584;
+      height: 23px;
+      width: 23px;
+      border-radius: 23px;
+      background: #439643;
+      cursor: pointer;
+    }
+    input[type=range]::-ms-track {
+      width: 100%;
+      height: 12px;
+      cursor: pointer;
+      animate: 0.2s;
+      background: transparent;
+      border-color: transparent;
+      color: transparent;
+    }
+    input[type=range]::-ms-fill-lower {
+      background: #205928;
+      border: 1px solid #18D501;
+      border-radius: 2px;
+      box-shadow: 1px 1px 1px #002200;
+    }
+    input[type=range]::-ms-fill-upper {
+      background: #205928;
+      border: 1px solid #18D501;
+      border-radius: 2px;
+      box-shadow: 1px 1px 1px #002200;
+    }
+    input[type=range]::-ms-thumb {
+      margin-top: 1px;
+      box-shadow: 3px 3px 3px #00AA00;
+      border: 2px solid #83E584;
+      height: 23px;
+      width: 23px;
+      border-radius: 23px;
+      background: #439643;
+      cursor: pointer;
+    }
+    input[type=range]:focus::-ms-fill-lower {
+      background: #205928;
+    }
+    input[type=range]:focus::-ms-fill-upper {
+      background: #205928;
+    }
+    #colors {
+      border-radius: 10%;
+      background-color: rgba(134, 134, 134, 0.1);
+      margin: 50px;
+      width: 500px;
+      height: auto;
+    }
+    #colorsDiv {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .colorDiv {
+      margin: 10px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
   </style>
+</head>
+<body>
+  <div class="templating">
+    <form>
+      <label for="myWidth">Width: </label>
+      <input type="range" id="myWidth" min="10" max="500" step="10">
+
+      <label for="myColor">Color: </label>
+      <input type="color" id="myColor" min="10" max="500" step="10"><br><br>
+
+      <label for="myNumber">Height: </label>
+      <input type="range" id="myNumber" min="10" max="500" step="10">
+
+      <label for="myBorderRadius">Border radius: </label>
+      <input type="range" id="myBorderRadius" min="0" max="250" step="10">
+
+      <label for="myMargin">Margin: </label>
+      <input type="range" id="myMargin" min="10" max="500" step="10">
+    </form>
+
+    <div class="TemplatingResult">
+      <div id="result" class="result"></div>
+    </div>
+  </div>
+
+  <div id="test"></div>
+
+  <div id="colors">
+    <h1>Select a color:</h1>
+    <div id="colorsDiv"></div>
+  </div>
+
+  <script>
+    /*
+      Задание:
+        Сделать шиблонизатор элемента по:
+        Ширине input type=range
+        Цвету  input type=color
+        Высоте input type=number
+        Скругление углов input type=number
+        Margin input type=number
+
+      Свойсвта: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Properties_Reference
+
+        + Сделать выборку цвета из рандомных 20 цветов которые выбираются из появившегося блока :
+        https://s3.envato.com/files/230412754/screenshots/1.png
+        За заготовку для рандома цвета использовать функцию из первых занятий.
+    */
+    function getRandomIntInclusive(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function getRandomColor() {
+      let r = getRandomIntInclusive(0, 255),
+          g = getRandomIntInclusive(0, 255),
+          b = getRandomIntInclusive(0, 255);
+
+          return `rgb(${r},${g},${b})`;
+    }
+
+    function getArrayColors(cnt = 20) {
+      let arr = [];
+
+      for (let i = 0; i <= cnt; i++) {
+        arr.push(getRandomColor());
+      }
+
+      return arr;
+    }
+
+    window.addEventListener("load", function () {
+      const result = document.getElementById('result'),
+            test = document.getElementById('test'),
+            myWidth = document.getElementById('myWidth'),
+            myColor = document.getElementById('myColor'),
+            myNumber = document.getElementById('myNumber'),
+            myBorderRadius = document.getElementById('myBorderRadius'),
+            myMargin = document.getElementById('myMargin'),
+            colorsArray = getArrayColors();
+
+      function createDivColor(colorsArray) {
+        const colorsDiv = document.getElementById('colorsDiv');
+
+        colorsArray.forEach((color) => {
+          let div = document.createElement('div');
+          div.style.backgroundColor = color;
+          div.className = 'colorDiv'
+
+          colorsDiv.appendChild(div);
+        });
+      }
+      createDivColor(colorsArray);
+
+      myWidth.addEventListener('input', function(event) {
+        result.style.width = event.target.value + 'px';
+        test.style.width = event.target.value + 'px';
+      });
+
+      myColor.addEventListener('input', function(event) {
+        test.style.backgroundColor = event.target.value;
+      });
+
+      myNumber.addEventListener('input', function(event) {
+        test.style.height = event.target.value + 'px';
+      });
+
+      myBorderRadius.addEventListener('input', (e) => {
+        test.style.borderRadius = e.target.value + 'px';
+      });
+
+      myMargin.addEventListener('input', (e) => {
+        test.style.margin = e.target.value + 'px';
+      });
+
+      const colorDiv = document.querySelectorAll('#colorsDiv .colorDiv');
+
+      colorDiv.forEach((div) => {
+        div.addEventListener('click', (e) => {
+          test.style.backgroundColor = e.target.style.backgroundColor
+        })
+      })
+
+    });
+  </script>
 </body>
 </html>
