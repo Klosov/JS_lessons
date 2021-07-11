@@ -3,9 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>Classwork</title>
+    <style>
+        .search {
+            margin: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="listArray"></div>
 
-    <script>
+    <div class="search">
+        <input type="search" id="searchInput">
+        <button type="button" id="searchBtn">Search</button>
+        <div id="result"></div>
+    </div>
 
+    <div class="search">
+        <label for="actors">Выбор актера</label>
+        <select name="actors" id="actors"></select>
+        <br><br>
+
+        <label for="duration">Выбор продолжительности</label>
+        <select name="duration" id="duration">
+            <option value="0"> time < 100 </option>
+            <option value="1"> 100 >= time <= 130 </option>
+            <option value="2"> time > 130 </option>
+        </select>
+        <br><br>
+
+        <div id="resultFilm"></div>
+    </div>
+<script>
     /*
       Задание:
       1. При помощи методов изложеных ниже, переформатировать ITEA_COURSES в массив который содержит длину строк каждого из элементов.
@@ -16,6 +44,35 @@
     */
 
     const ITEA_COURSES = ["Курс HTML & CSS", "JavaScript базовый курс", "JavaScript продвинутый курс", "JavaScript Professional", "Angular 2.4 (базовый)", "Angular 2.4 (продвинутый)", "React.js", "React Native", "Node.js", "Vue.js"];
+
+    let NewArr = ITEA_COURSES.map((currentValue) => {
+        return currentValue.length
+    });
+
+    console.log(NewArr);
+
+    const listArray = document.getElementById('listArray');
+    let sortedArray = ITEA_COURSES.sort();
+    let list = '<ul>';
+
+    sortedArray.map(elem => {
+        list += `<li>${elem}</li>`;
+    });
+
+    list += '</ul>';
+
+    listArray.innerHTML = list;
+
+    const searchBtn = document.getElementById('searchBtn'),
+        searchInput = document.getElementById('searchInput'),
+        result = document.getElementById('result');
+
+    searchBtn.addEventListener('click', () => {
+        result.innerText = ITEA_COURSES.find((elem) => {
+            return elem.includes(searchInput.value)
+        });
+    });
+
 
     /*
       Задание 2:
@@ -29,33 +86,64 @@
         - Результат в виде списка фильмов
     */
 
-      var stars = ['Elijah Wood', 'Ian McKellen', 'Orlando Bloom','Ewan McGregor',' Liam Neeson', 'Natalie Portman', 'Ewan McGregor', 'Billy Bob Thornton', 'Martin Freeman']
-      var movies = [
-            {
-              name: "Lord of the Rigs",
-              duration: 240,
-              starring: [ 'Elijah Wood', 'Ian McKellen', 'Orlando Bloom']
-            },
-            {
-              name: "Star Wars: Episode I - The Phantom Menace",
-              duration: 136,
-              starring: [ 'Ewan McGregor',' Liam Neeson', 'Natalie Portman']
-            },
-            {
-              name: "Fargo",
-              duration: 100,
-              starring: [ 'Ewan McGregor', 'Billy Bob Thornton', 'Martin Freeman']
-            },
-            {
+    const stars = ['Elijah Wood', 'Ian McKellen', 'Orlando Bloom','Ewan McGregor',' Liam Neeson', 'Natalie Portman', 'Ewan McGregor', 'Billy Bob Thornton', 'Martin Freeman']
+    const movies = [
+        {
+            name: "Lord of the Rigs",
+            duration: 240,
+            starring: [ 'Elijah Wood', 'Ian McKellen', 'Orlando Bloom']
+        },
+        {
+            name: "Star Wars: Episode I - The Phantom Menace",
+            duration: 136,
+            starring: [ 'Ewan McGregor',' Liam Neeson', 'Natalie Portman']
+        },
+        {
+            name: "Fargo",
+            duration: 120,
+            starring: [ 'Ewan McGregor', 'Billy Bob Thornton', 'Martin Freeman']
+        },
+        {
             name: "V for Vendetta",
             duration: 150,
             starring: [ 'Hugo Weaving', 'Natalie Portman', 'Rupert Graves']
-          }
-        ];
+        }
+    ];
 
-    </script>
-</head>
-<body>
-  
+    const actors = document.getElementById('actors'),
+        duration = document.getElementById('duration'),
+        resultFilm = document.getElementById('resultFilm');
+
+
+    let startOpt = new Option( "Выберите актера", null, true, true);
+
+    stars.forEach( function(item) {
+        let option = new Option(item, item, true, true);
+        actors.appendChild(option);
+    });
+
+    actors.appendChild(startOpt);
+
+    duration.addEventListener('change', searchFilm);
+    actors.addEventListener('change', searchFilm);
+
+    function searchFilm() {
+        let result = movies.find((film) => {
+
+            if (film.starring.includes(actors.value)){
+                if (duration.value === '0' ) {
+                    return film.duration < 100
+                } else if (duration.value === '1') {
+                    return film.duration >= 100 || film.duration <= 130
+                } else {
+                    return film.duration > 130
+                }
+            }
+        });
+
+        if (result !== undefined) resultFilm.innerText = result.name;
+        else resultFilm.innerText = 'Not found';
+    }
+</script>
 </body>
 </html>
