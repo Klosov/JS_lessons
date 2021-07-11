@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Constructors</title>
+</head>
+<body>
+  <div class="wrap"></div>
+  <script>
+  /*
+
+    Задание:
+
+    Написать функцию конструктор, которая будет иметь приватные и публичные свойства.
+    Публичные методы должны вызывать приватные.
+
+    Рассмотрим на примере планеты:
+
+      - На вход принимаются параметр Имя планеты.
+
+      Создается новый обьект, который имеет публичные методы и свойства:
+      - name (передается через конструктор)
+      - population ( randomPopulation());
+      - rotatePlanet(){
+        let randomNumber = Math.floor(Math.random() * (1000 - 1 + 1)) + 1;
+        if ( (randomNumber % 2) == 0) {
+          growPopulation();
+        } else {
+          Cataclysm();
+        }
+      }
+
+      Приватное свойство:
+      populationMultiplyRate - случайное число от 1 до 10;
+
+      Приватные методы
+      randomPopulation -> Возвращает случайное целое число от 1.000 до 10.000
+      growPopulation() {
+        функция которая берет приватное свойство populationMultiplyRate
+        которое равняется случайному числу от 1 до 10 и умножает его на 100.
+        Дальше, число которое вышло добавляет к популяции и выводит в консоль сообщение,
+        что за один цикл прибавилось столько населения на планете .
+      }
+      Cataclysm(){
+        Рандомим число от 1 до 10 и умножаем его на 250;
+        То число которое получили, отнимаем от популяции.
+        В консоль выводим сообщение - от катаклизма погибло Х человек на планете.
+      }
+
+  */
+    function Planet(name) {
+        this.name = name;
+
+        this.randomPopulation = (min, max) => {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        this.population = this.randomPopulation(1000, 10000);
+
+        let populationMultiplyRate = getRandomInt(0, 10);
+
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min
+        }
+
+        this.rotatePlanet = () => {
+            let randomNumber = Math.floor(Math.random() * (1000 - 1 + 1)) + 1;
+            if ( (randomNumber % 2) === 0) {
+                growPopulation.call(this);
+            } else {
+                Cataclysm.call(this);
+            }
+        }
+
+        function growPopulation() {
+            let population = populationMultiplyRate * 100 + this.population;
+
+            console.log(`за один цикл прибавилось ${population} населения на планете`)
+        }
+
+        function Cataclysm() {
+            let population = (getRandomInt(1, 10) * 250) - this.population;
+            console.log(`сейчас население пранеты ${this.name} равно:${population}`);
+        }
+    }
+
+    Earth = new Planet('Earth');
+
+  </script>
+</body>
+</html>

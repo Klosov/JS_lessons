@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Constructors</title>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <form>
+        <label for="author">
+          <span>Author</span>
+          <select id="author" name="author">
+            <option value="Taras Shevchenko">Taras Shevchenko</option>
+            <option value="Ivan Franko">Ivan Franko</option>
+            <option value="Vasyl Stys">Vasyl Stys</option>
+            <option value="Oles Gonchar">Oles Gonchar</option>
+          </select>
+        </label>
+
+        <label for="message">
+          <span>Message</span>
+          <textarea placeholder="Your Message" id="message"></textarea>
+        </label>
+
+        <button type="submit">Send Message</button>
+      </form>
+    </header>
+    
+    <section>
+      <ul id="message_list">
+        <li>
+            <div class="message__date">
+              27/01/2018
+            </div>
+            <div class="message__author">
+              <b>Ivan Franko</b>
+            </div>
+            <div class="message__text">
+              Ночі безмірнії, ночі безсоннії...
+            </div>
+            <div class="message__controls">
+              <button class="_skipMessage">Skip</button>
+              <button class="_answerMessage">Answer</button>
+            </div>
+        </li>
+      </ul>
+
+    </section>
+
+  </div>
+
+  <script>
+
+  /*
+    Задание на классы.
+
+    1. Создать пустой массив messages, куда будут добавлятся все новосозданные сообщения
+
+    2. Создать класс Message конструктор котрого состоит из следующих полей:
+      id, author, text, date, answers
+
+    У этого класса необходимо реализовать следующие методы:
+    SkipMessage() -> которое должно найти сообщение и удалить его из массива messages.
+    AnswerMessage()-> должно отрыть поле ввода, в который вы сможете ввести ответ
+    SendAnswer() -> метод который «отравляет» ответ, при этом обновляя поле ответа(answers) в вашем объекте с сообщением.
+
+   3. Создать класс  Answer который наследуется от класса Message, но еще дополнительно будет иметь поле parentId
+
+   var messages = [];
+
+    message = { 
+      id: '',
+      author: '',
+      text: '',
+      date: '',
+      answers: [
+        {
+          id: '',
+          author: '',
+          text: '',
+          date: '',
+          parentId: '',
+          answers: ''
+        }
+      ]
+    }
+
+    Подсказка: 
+      в метод SendAnswer нужно передать обьект класса Answer который наследуется от класса Message
+      После создания, сообщение добавляется в массив messages со всеми сообщениями.
+      Для вывода на екран необходимо написать дополнительный метод  Render()
+      Все данные берутся с формы.
+      Количество методов может быть больше чем указано в задании, если появится необходимость для выделения логики в отдельные методы, главное реализовать те что есть в задании
+
+    _ _ _
+
+    Задание можно разделить на две части:
+      1. Создание самого сообщения:
+        id->выдаётся автоматом
+        Author-> селект с выбором автора
+        Text -> текст сообщения
+        date -> автоматически в момент создания      
+
+      2. Ответ на сообщение
+
+  */
+
+  </script>
+</body>
+</html>
