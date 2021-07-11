@@ -3,6 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Homework</title>
+    <style>
+        #clock {
+            width: 100px;
+            height: 100px;
+            margin: 15px 30px;
+            border: 1px solid gray;
+            border-radius: 50%;
+            position: relative;
+        }
+        .seconds {
+            background: red;
+            height: 45%;
+            left: 49.5%;
+            position: absolute;
+            top: 14%;
+            transform-origin: 50% 80%;
+            width: 1%;
+            z-index: 8;
+        }
+    </style>
 </head>
 <body>
       <!--
@@ -16,8 +36,26 @@
 
        + бонус: Сделать кнопки которые выбирают режим в котором идет отсчет - обычный от 0 до 30 или реверсивный от 30 до 0
       -->
-      <script>
+      <header>
+          <button id="start">Start</button>
+          <button id="pause">Pause</button>
+          <button id="stop">Stop</button>
+      </header>
+      <section>
+          <h2>Timer: <span id="time">0</span></h2>
+          <div class="clock_wrap">
+              <div id="clock">
+                  <div class="seconds"></div>
+              </div>
+          </div>
+      </section>
 
-      </script>
+      <label for="timerSelectMode">Choose timer mode:</label>
+      <select name="timerSelectMode" id="timerSelectMode">
+          <option value="classic">Classic</option>
+          <option value="reverse">Reverse</option>
+      </select>
+
+<script src="timer.js"></script>
 </body>
 </html>
