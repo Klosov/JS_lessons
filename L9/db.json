@@ -1,0 +1,24 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "name": "acadsasdsd",
+      "age": "dadasdasdasdasd",
+      "id": 3
+    },
+    {
+      "name": "фывфыв",
+      "age": "фывфвфывфы",
+      "id": 4
+    },
+    {
+      "name": "adasdas",
+      "age": "dasdasd",
+      "id": 5
+    }
+  ]
+}

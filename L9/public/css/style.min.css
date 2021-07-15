@@ -1,0 +1,22 @@
+/* html {
+  background: blue;
+} */
+
+.tetstst {
+  width: 100px;
+}
+
+.header {
+  width: 100%;
+  height: 50px;
+  /* background: blue; */
+}
+
+.header__block {
+  width: 100px;
+  color: blue;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
