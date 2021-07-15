@@ -26,7 +26,25 @@
 */
 
   class SuperDude {
-    
+    constructor(superOptions) {
+        this.superOptions = superOptions;
+
+        Object.defineProperties(this, 'Some test', {
+            value: '',
+            configurable: false,
+            enumerable: false,
+            writable: false
+        });
+
+        this.superOptions.forEach(item => {
+            Object.defineProperties(this, item.name, {
+                value: () => console.log(item.spell()),
+                configurable: false,
+                enumerable: false,
+                writable: false
+            });
+        })
+    }
   }
 
   let superPowers = [
@@ -37,7 +55,7 @@
     { name:'superSkin',  spell: function(){ return `${this.name} skin is unbreakable`} },
   ];
 
-  let Luther = new Dude('Luther', superPowers);
+  let Luther = new SuperDude('Luther', superPowers);
       // Тестирование: Методы должны работать и выводить сообщение.
       Luther.superSight();
       Luther.superSpeed();
