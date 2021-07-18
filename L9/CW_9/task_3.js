@@ -17,10 +17,11 @@
     - После перезагрузки страницы, данные должны сохраниться.
     - Можно было предзагрузить данные в класс из апи: http://www.json-generator.com/api/json/get/cgCRXqNTtu?indent=2
 */
-
+const FormPost = document.getElementById('addPost');
 const posts = document.getElementById('posts');
+const loadPostsBtn = document.getElementById('loadPosts');
 
-class Posts {
+class Post {
     likes = 0;
 
     constructor(_id, isActive, title, about, created_at) {
@@ -47,20 +48,42 @@ class Posts {
     }
 }
 
+FormPost.addEventListener('submit', (e) => {
+    e.preventDefault();
 
+    let date = new Date();
+    date.getDate();
 
-(function getData() {
+    let post = new Post(Date.now(), true, FormPost.title.value, FormPost.about.value, date);
+    let html = post.render();
+    posts.insertAdjacentHTML('afterbegin', html);
+
+    let AllPosts = localStorage.getItem("posts");
+
+    html += AllPosts;
+
+    localStorage.setItem('posts', html);
+});
+
+loadPostsBtn.addEventListener('click', () => {
+    let html = localStorage.getItem("posts");
+
     fetch('https://www.json-generator.com/api/json/get/cgCRXqNTtu?indent=2')
         .then((response) => {
             return response.json();
         })
         .then((data) => {
-            let html = '';
             data.forEach( (post) => {
-                window[post._id] = new Posts(post._id, post.isActive, post.title, post.about, post.created_at);
+                window[post._id] = new Post(post._id, post.isActive, post.title, post.about, post.created_at);
                 html += window[post._id].render();
             });
-
-            posts.innerHTML = html;
+            localStorage.setItem("posts", html);
+            posts.insertAdjacentHTML('afterbegin', html);
         });
+});
+
+(function getPostsFromLS() {
+    let AllPosts = localStorage.getItem("posts");
+
+    posts.insertAdjacentHTML('afterbegin', AllPosts);
 })();
