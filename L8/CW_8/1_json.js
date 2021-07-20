@@ -5,7 +5,7 @@
     1. Собирает данные с формы (3 разных полей), конвертирует их в json и выводит в консоль.
   ->  2. Сделать отдельный инпут который выполняет JSON.parse(); на ту строку что вы туда ввели и выводит результат в консоль.
 
-  Array.from(HTMLNodeColection); -> Arary
+  Array.from(HTMLNodeCollection); -> Array
 
   <form>
     <input name="name" />
@@ -22,13 +22,17 @@
 
 */
 
+const resultInput = document.getElementById('result');
 
 const formData = new FormData();
 formData.append('name', 'Tester');
 formData.append('city', 'Test');
 formData.append('age', '20');
 
-// Display the values
-for (var value of formData.values()) {
-    console.log(value);
-}
+let jsonFormData = JSON.stringify(Array.from(formData));
+
+console.log(jsonFormData);
+
+resultInput.value = jsonFormData;
+
+console.log(JSON.parse(jsonFormData));
