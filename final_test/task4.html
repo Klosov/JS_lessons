@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        td {
+            border: 1px solid #ccc;
+            max-height: 20px;
+            word-wrap: break-word;
+        }
+    </style>
 </head>
 <body>
     <!-- 
@@ -17,5 +24,55 @@
 
     4. создать кнопу которая скрывает показывает address
      -->
+<script>
+    let url = 'https://www.json-generator.com/api/json/get/cgwbLkTxnS?indent=2';
+
+    fetch(url).then(res => {
+        return res.json()
+    }).then(res => {
+        console.log(res);
+        buildTable(res);
+    });
+
+    function buildTable(rows) {
+        let table = document.createElement('table');
+        table.style.border = '1px solid #ccc';
+
+        /*let tableHead = `<thead>
+                            <tr>
+                                <th>index</th>
+                                <th>company</th>
+                                <th>email</th>
+                                <th>phone</th>
+                                <th>address</th>
+                            </tr>
+                        </thead>`;*/
+
+        // Формируем <tr></tr>
+        rows.forEach(row => {
+            let tableTR = document.createElement('tr');
+
+            // Формируем <td></td>
+            for (let td in row) {
+                let tableTD = document.createElement('td');
+                //console.log("td." + td /*+ " = " + row[td]*/);
+
+                console.log(row.index === 'index' );
+                console.log(Object.getOwnPropertyNames(object1));
+
+                if (row === 'index' || row === 'company' || row === 'email' || row === 'phone' || row === 'address' ) {
+                    tableTD.innerText = row[td];
+                }
+
+                tableTR.appendChild(tableTD);
+                table.appendChild(tableTR);
+            }
+        });
+
+        //table.appendChild(tableHead);
+        document.body.appendChild(table);
+    }
+
+</script>
 </body>
 </html>
