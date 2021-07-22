@@ -39,18 +39,51 @@
         }
     </style>
 <!--  
-      Задание:
-        Создать список дел, в который можно:
-        - Добавить новый элемент
-        - Удалить элемент
+  Задание:
+    Создать список дел, в который можно:
+    - Добавить новый элемент
+    - Удалить элемент
 
-      Шаблон элемента:
-        <li class="listItem">
-            <span class="TodoText">{add text}</span>
-            <button>Remove</button>
-        </li>
+  Шаблон элемента:
+    <li class="listItem">
+        <span class="TodoText">{add text}</span>
+        <button>Remove</button>
+    </li>
 -->
+<script>
+    let AddBtn = document.getElementById('AddToDo'),
+        list = document.getElementById('toDoList'),
+        input = document.getElementById('newToDo'),
 
+    addToTheList = (e) => {
 
+        value = input.value;
+        if (value.length === 0) return false;
+
+        const li = document.createElement('li'),
+            span = document.createElement('span'),
+            button = document.createElement('button');
+
+        li.classList = 'listItem';
+        span.classList = 'TodoText';
+        span.innerHTML = value;
+        button.innerHTML = 'Remove';
+
+        button.addEventListener('click', removeItem);
+
+        li.appendChild(span);
+        li.appendChild(button);
+
+        list.appendChild(li);
+
+        input.value = '';
+    }
+
+    removeItem = function (e) {
+        e.target.closest('li').remove();
+    }
+
+    AddBtn.addEventListener('click', addToTheList);
+</script>
 </body>
 </html>
