@@ -10,7 +10,7 @@
     <script>
         /*
             Задание 1:
-
+            Через прототипы
             Написать обьект Train у которого будут свойства:
             -имя,
             -скорость езды
@@ -19,7 +19,30 @@
             Ехать -> Поезд {name} везет { количество пассажиров} со скоростью {speed}
             Стоять -> Поезд {name} остановился. Скорость {speed}
             Подобрать пассажиров -> Увеличивает кол-во пассажиров на Х
-        */    
+        */
+        let Train = function (_name, _speed, _passengers) {
+            this.name = _name;
+            this.speed = _speed;
+            this.passengers = _passengers;
+        }
+
+        Train.prototype.drive = function() {
+            console.log(`Поезд ${this.name} везет ${this.passengers} со скоростью ${this.speed}`);
+        }
+
+        Train.prototype.stop = function() {
+            this.speed = 0;
+            console.log(`Поезд ${this.name} остановился. Скорость ${this.speed}`);
+        }
+
+        Train.prototype.pickUpPass = function(n) {
+            this.passengers += n;
+        }
+
+        //let Test = new Train('test', 300, 10);
+        //Test.pickUpPass(33);
+        //Test.drive();
+        //Test.stop();
     </script>
 </body>
 </html>
