@@ -55,14 +55,12 @@
             // Формируем <td></td>
             for (let td in row) {
                 let tableTD = document.createElement('td');
+
                 //console.log("td." + td /*+ " = " + row[td]*/);
 
-                console.log(row.index === 'index' );
-                console.log(Object.getOwnPropertyNames(object1));
-
-                if (row === 'index' || row === 'company' || row === 'email' || row === 'phone' || row === 'address' ) {
+                //if (row === 'index' || row === 'company' || row === 'email' || row === 'phone' || row === 'address' ) {
                     tableTD.innerText = row[td];
-                }
+                //}
 
                 tableTR.appendChild(tableTD);
                 table.appendChild(tableTR);
