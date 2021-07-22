@@ -3,15 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>Forms Task 1</title>
-  <script>
-    /*
-      Задание:
-        Сделать валидацию формы:
-        1. Логин / Пароль не может быть пустым
-        2. то поле, которое не прошло валидацию подсвечивать красным, которое прошло - подсвечивать зеленым.
-        3. Пока не стоит что юзер согласен с лиц. соглашением - кнопка отправки не активна
-    */
-  </script>
 </head>
 <body>
   <form id="MyValidateForm">
@@ -44,5 +35,76 @@
         border: 1px solid green;
     }
   </style>
+
+  <script>
+    const MyValidateForm = document.getElementById('MyValidateForm'),
+            login = document.querySelector('input[name="login"]'),
+            passMain = document.querySelector('input[name="pas1"]'),
+            passConfirm = document.querySelector('input[name="pas2"]'),
+            agree = document.getElementById('agree'),
+
+            submit = document.getElementById('submit'),
+
+            validBorder = 'OK',
+            notValidBorder = 'error';
+
+    MyValidateForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      let isValidLogin = validateLogin(login.value);
+      let isValidPass = validateMainPwd(passMain.value);
+      let isValidSecondPass = validateConfirmedPwd(passMain.value, passConfirm.value);
+
+      if ( isValidLogin && isValidPass && isValidSecondPass ) {
+        alert('Form send');
+      }
+    })
+
+    function validateLogin(loginVal) {
+      if (loginVal.length > 3) {
+        login.classList = validBorder;
+        return true;
+      } else {
+        login.classList = notValidBorder;
+        return false;
+      }
+    }
+
+    function validateMainPwd(pwd, passField = passMain) {
+      console.log(pwd)
+      if (pwd > 3) {
+        passField.classList = validBorder;
+        return true;
+      } else {
+        passField.classList = notValidBorder;
+        return false;
+      }
+    }
+
+    function validateConfirmedPwd(pwdMain, pwdConfirm) {
+
+      let isValidSecondPass = validateMainPwd(pwdConfirm, passConfirm);
+
+      if (isValidSecondPass && pwdMain === pwdConfirm) {
+        passConfirm.classList = validBorder;
+        return true;
+      } else {
+        passConfirm.classList = notValidBorder;
+        return false;
+      }
+    }
+
+    agree.addEventListener('change', (e) => {
+      submit.disabled = !e.target.checked;
+    })
+
+    /*
+      Задание:
+        Сделать валидацию формы:
+        1. Логин / Пароль не может быть пустым
+        2. то поле, которое не прошло валидацию подсвечивать красным, которое прошло - подсвечивать зеленым.
+        3. Пока не стоит что юзер согласен с лиц. соглашением - кнопка отправки не активна
+    */
+  </script>
 </body>
 </html>
