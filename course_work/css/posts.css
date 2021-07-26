@@ -1,0 +1,7 @@
+body {
+    background-color: #EDEDED !important;
+}
+#posts, #constructor {
+    background-color: #fff !important;
+    padding: 30px;
+}

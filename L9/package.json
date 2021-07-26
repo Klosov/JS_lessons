@@ -9,6 +9,7 @@
     "start:json": "json-server --watch db.json"
   },
   "dependencies": {
+    "bootstrap": "^5.0.2",
     "express": "^4.17.1"
   }
 }

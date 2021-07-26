@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>News feed</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/posts.css">
+</head>
+<body>
+<!--
+### Лента сообщений и форма для сообщений
+Нужно написать свою программу которая слева выводит список сообщений,
+а справа находится форма для добавления этих сообщений.
+
+Каждое сообщение можно:
+* Показать полностью (если больше 500 знаков)
+* Лайкнуть (с подсчетом лайков)
+* Показать все комментарии
+* Написать комментарий
+-->
+
+<div class="container">
+  <div class="row">
+    <section id="posts" class="col-6">
+      <h1>News Feed</h1>
+      <div class="post-info">
+        <a href="#">Вася пупкин</a>
+        <span id="post-date">20/12/2021 19:00</span>
+      </div>
+
+      <img src="" alt="">
+
+      <div id="post-description">
+        <p>Товарищи! постоянное информационно-пропагандистское обеспечение нашей деятельности требуют определения и уточнения системы обучения кадров, соответствует насущным потребностям. Повседневная практика показывает, что дальнейшее развитие различных форм деятельности влечет за собой процесс внедрения и модернизации соответствующий условий активизации. Задача организации, в особенности же консультация с широким активом позволяет оценить значение модели развития. Повседневная практика показывает, что укрепление и развитие структуры способствует подготовки и реализации дальнейших направлений развития. Повседневная практика показывает, что дальнейшее развитие различных форм деятельности позволяет выполнять важные задания по разработке систем массового участия. Таким образом начало повседневной работы по формированию позиции способствует подготовки и реализации соответствующий условий активизации.</p>
+      </div>
+
+      <div class="post-actions">
+        <button type="button" id="likeBtn" class="btn btn-info">
+          <span class="heart-like">&#x2764;</span>
+          <span>Likes: 15</span>
+        </button>
+
+        <button type="button" id="showCommentsBtn" class="btn btn-light">
+          <span>Comments (2)</span>
+        </button>
+
+        <button type="button" id="addCommentBtn" class="btn btn-warning" style="background-color:#FEF5CC;border-color: #FEF5CC;">
+          <span>Write Comment</span>
+        </button>
+      </div>
+
+      <div class="comments">
+        <div class="comment">
+          <h6>Arcadiy Petrovich</h6>
+          <p>По своей сути рыбатекст является альтернативой традиционному lorem ipsum, который вызывает у некторых людей недоумение при попытках прочитать рыбу текст. В отличии от lorem ipsum, текст рыба на русском языке наполнит любой макет непонятным смыслом и придаст неповторимый колорит советских времен.</p>
+        </div>
+      </div>
+
+      <form action="/" class="row">
+        <label>
+          <input type="text" name="author" id="author" class="col-12" placeholder="Author">
+        </label>
+        <textarea name="comment" id="comment" class="col-12" cols="10" rows="10" placeholder="Comment"></textarea>
+        <button type="submit" class="btn btn-warning w-100">Send comment</button>
+      </form>
+    </section>
+
+    <!-- Post constructor -->
+    <section id="constructor" class="col-6">
+      <h2>Post constructor</h2>
+
+      <form action="/" name="postConstructor" method="post">
+        <div class="row">
+          <label for="postAuthor" class="col-sm-2 col-form-label">Author</label>
+          <div class="col-sm-10">
+            <input type="text" name="author" id="postAuthor" class="form-control">
+          </div>
+        </div>
+
+        <div class="row">
+          <label for="postText" class="col-sm-2 col-form-label">Post Text</label>
+          <div class="col-sm-10">
+            <textarea name="comment" id="postText" cols="50" rows="20" class="form-control"></textarea>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <img src="https://via.placeholder.com/400x150" alt="img" id="imagePreload" class="w-100">
+          </div>
+        </div>
+
+        <div class="row">
+          <label for="url_image" class="col-sm-2 col-form-label">Image url</label>
+          <div class="col-sm-10">
+            <input type="url" name="url_image" id="url_image" class="form-control">
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-warning w-100">Submit Post</button>
+      </form>
+    </section>
+  </div>
+</div>
+
+<script src="js/course_work.js"></script>
+</body>
+</html>
